@@ -11,26 +11,23 @@
 			}
 			#haggis {
 				top: 0;
-				height: 70vh;
+				height: 80vh;
 			}
 			#python {
                 bottom: 0;
-				height: 30vh;
+				height: 19.5vh;
             }
 		</style>
 	</head>
 	<body>
 
 <div id="haggis">START
-	SET hello TO "Hello"
 	RECEIVE name FROM KEYBOARD
-
-	SEND hello & ", " & name & "!" TO DISPLAY
+	SEND "Hello, " & name & "!" TO DISPLAY
 END</div>
-<div id="python">function foo(items) {
-	var x = "All this is syntax highlighted";
-	return x;
-}</div>
+<div id="python">name = input()
+print("Hello, " + name + "!")
+</div>
 			
 		<script src="ace/ace.js" type="text/javascript" charset="utf-8"></script>
 		<script>

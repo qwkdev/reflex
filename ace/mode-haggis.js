@@ -162,8 +162,7 @@ define("ace/mode/haggis", ["require", "exports", "module", "ace/lib/oop", "ace/m
 				return indent;
 			}
 			if (state == "start") {
-				// var match = line.match(/^.*[\{\(\[:]\s*$/);
-				var match = line.match(/^.*\b(THEN|DO|METHODS)|[\{\(\[]\s*$/);
+				var match = line.match(/^.*\b(START|THEN|DO|METHODS)|[\{\(\[]\s*$/);
 
 				if (match) {
 					indent += tab;
