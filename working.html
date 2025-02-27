@@ -15,10 +15,10 @@
 				top: 0;
 				height: 100vh;
 			}
-			/* #python {
+			#python {
                 bottom: 0;
 				height: 19.5vh;
-            } */
+            }
 		</style>
 	</head>
 	<body>
@@ -27,20 +27,20 @@
 	RECEIVE name FROM KEYBOARD
 	SEND "Hello, " & name & "!" TO DISPLAY
 END</div>
-<!-- <div id="python">name = input()
+<div id="python">name = input()
 print("Hello, " + name + "!")
-</div> -->
+</div>
 			
 		<script src="ace/ace.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			var haggis = ace.edit("haggis");
-			// var python = ace.edit("python");
+			var python = ace.edit("python");
 			haggis.setTheme("ace/theme/dracula");
-			// python.setTheme("ace/theme/dracula");
+			python.setTheme("ace/theme/dracula");
 			haggis.setShowPrintMargin(false);
-			// python.setShowPrintMargin(false);
+			python.setShowPrintMargin(false);
 			haggis.session.setMode("ace/mode/haggis");
-			// python.session.setMode("ace/mode/python");
+			python.session.setMode("ace/mode/python");
 		</script>
 	</body>
 </html>
