@@ -52,7 +52,7 @@ define("ace/mode/haggis_highlight_rules", ["require", "exports", "module", "ace/
 				regex: "[\\]\\)\\}]"
 			}, {
 				token: ["keyword", "text", "entity.name.function"],
-				regex: "(def|class)(\\s+)([\\u00BF-\\u1FFF\\u2C00-\\uD7FF\\w]+)"
+				regex: "(PROCEDURE|FUNCTION|CLASS)(\\s+)([\\u00BF-\\u1FFF\\u2C00-\\uD7FF\\w]+)"
 			}, {
 				token: "text",
 				regex: "\\s+"

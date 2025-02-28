@@ -1,40 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>ACE in Action</title>
+		<title>HAGGISpy</title>
 		<style>
-			#haggis, #python {
-				width: 100vw;
-				position: absolute;
-				right: 0;
-				left: 0;
+			body {
+				margin: 0;
+			}
 
+			#main {
+				display: grid;
+				grid-template-columns: 45vw 10vw 45vw;
+				grid-template-rows: 60vh 10vh 30vh;
+				height: 100vh;
+				width: 100vw;
+
+				/* background: rgb(40, 42, 54); */
+				background: rgb(47, 49, 62);
+			}
+
+			#haggis, #python {
+				width: 100%;
+				height: 100%;
 				font-size: 2vh;
 			}
-			#haggis {
-				top: 0;
-				height: 100vh;
+
+			#menu {
+				display: grid; /* TODO */
+
+				#translate {
+					background: #078f0a;
+					border: .25vw solid #00ff00;
+					box-shadow: 0 0 2vw -.5vw #00ff0077;
+				}
+
+				#create {
+					position: sticky;
+					bottom: 3vw;
+					right: 3vw;
+					left: 77vw;
+					width: 20vw;
+					height: 7.5vw;
+					border-radius: .5vw;
+					color: #ffffff;
+					font-family: "Syne";
+					font-weight: 700;
+					font-size: 4vw;
+					transition: .4s;
+					z-index: 100;
+					margin-top: 3vw;
+					background: #078f0a;
+					border: .25vw solid #00ff00;
+					box-shadow: 0 0 2vw -.5vw #00ff0077;
+				}
+				#create:hover {
+					transform: scale(1.01);
+				}
 			}
-			#python {
-                bottom: 0;
-				height: 19.5vh;
-            }
+
+			/* Portrait */
+			#haggis { grid-area: 1 / 1 / 2 / 4; }
+			#python { grid-area: 3 / 1 / 4 / 4; }
+			#menu { grid-area: 2 / 1 / 3 / 4; } 
+
+			/* Landscape */
+			/* #haggis { grid-area: 1 / 1 / 4 / 2; }
+			#python { grid-area: 1 / 3 / 4 / 4; }
+			#menu { grid-area: 1 / 2 / 4 / 3; }  */
 		</style>
 	</head>
 	<body>
+<div id="main">
 
 <div id="haggis">START
 	RECEIVE name FROM KEYBOARD
 	SEND "Hello, " & name & "!" TO DISPLAY
 END</div>
-<div id="python">name = input()
-print("Hello, " + name + "!")
+<div id="menu">
+	<button id="translate">
+		<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M20 12L16 8M20 12L16 16" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+	</button>
 </div>
-			
+<div id="python">name = input()
+print("Hello, " + name + "!")</div>
+
+</div>
 		<script src="ace/ace.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			var haggis = ace.edit("haggis");
 			var python = ace.edit("python");
+			// TODO: Adjust dracula theme for blue numbers? idk
 			haggis.setTheme("ace/theme/dracula");
 			python.setTheme("ace/theme/dracula");
 			haggis.setShowPrintMargin(false);
