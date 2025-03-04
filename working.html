@@ -186,7 +186,7 @@ END</div>
 		</button>
 	</div>
 	<div id="menu">
-		<button id="translate">
+		<button id="translate" onclick="translate()">
 			<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M20 12L16 8M20 12L16 16" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
 		</button>
 		<div id="selection">
@@ -262,6 +262,26 @@ print("Hello, " + name + "!")</div>
 						python.moveCursorToPosition(fullscreen_editor.getCursorPosition());
 					}
 				}
+			}
+
+			function translate() {
+				let code = haggis.getValue();
+
+				fetch('https://qwk.pythonanywhere.com/', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ code: code })
+				})
+				.then(response => response.json())  // Expecting a JSON response
+				.then(data => {
+					editor.setValue(data.code, -1);  // Update Ace editor with formatted code
+				})
+				.catch(error => {
+					console.error('Error:', error);
+					editor.setValue(`//! ERROR:\n//! ${error}`, -1);
+				});
 			}
 		</script>
 	</body>

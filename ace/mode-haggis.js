@@ -28,6 +28,12 @@ define("ace/mode/haggis_highlight_rules", ["require", "exports", "module", "ace/
 		var stringEscape = "\\\\(x[0-9A-Fa-f]{2}|[0-7]{3}|[\\\\abfnrtv'\"]|U[0-9A-Fa-f]{8}|u[0-9A-Fa-f]{4})";
 		this.$rules = {
 			"start": [{
+				token: "ecomment",
+				regex: "#!.*$|//!.*$"
+			}, {
+				token: "qcomment",
+				regex: "#\\?.*$|//\\?.*$"
+			}, {
 				token: "comment",
 				regex: "#.*$|//.*$"
 			}, {
