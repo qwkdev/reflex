@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>HAGGISpy</title>
+		<title>Reflex</title>
 		<style>
+			#haggis { grid-area: 1 / 1 / 2 / 4; }
+			#python { grid-area: 3 / 1 / 4 / 4; }
+			#menu {
+				grid-area: 2 / 1 / 3 / 4;
+				grid-template-columns: 10vh auto 15vh;
+				grid-template-rows: auto;
+
+				#translate svg {
+					transform: rotate(90deg);
+				}
+			}
+
+			/* Landscape */
+			/* #haggis { grid-area: 1 / 1 / 4 / 2; }
+			#python { grid-area: 1 / 3 / 4 / 4; }
+			#menu { grid-area: 1 / 2 / 4 / 3; }  */
+		
+
 			body {
 				margin: 0;
 			}
 
 			#main {
 				display: grid;
-				grid-template-columns: 45vw 10vw 45vw;
+				grid-template-columns: auto 15vh auto;
 				grid-template-rows: 60vh 10vh 30vh;
 				height: 100vh;
 				width: 100vw;
@@ -79,6 +97,8 @@
 				}
 				#translate:hover {
 					transform: scale(1.04);
+
+					background: #179f1a;
 				}
 
 				#selection {
@@ -123,13 +143,45 @@
 					
 					font-family: Arial;
 
+					h2 a, p a {
+						position: relative;
+						transition: .2s;
+						z-index: 2;
+						text-decoration: none;
+
+						.underline {
+							width: 110%;
+							transform: translate(-4%, 0);
+							height: 1px;
+							
+							position: absolute;
+							bottom: 0;
+							transition: .2s;
+							z-index: -100;
+						}
+
+						&:hover {
+							color: rgb(47, 49, 62) !important;
+
+							.underline {
+								height: 100%;
+							}
+						}
+					}
+
 					h2 {
 						font-size: 1.5vh;
 						line-height: 1.6vh;
 						font-weight: 500;
 
 						color: rgb(157, 159, 172);
-						a { color: rgb(157, 159, 172); }
+
+						a {
+							color: rgb(157, 159, 172);
+							.underline {
+								background: rgb(157, 159, 172);
+							}
+						}
 					}
 					p {
 						font-size: 1vh;
@@ -137,30 +189,18 @@
 						font-weight: 500;
 
 						color: rgb(97, 99, 112);
-						a { color: rgb(97, 99, 112); }
+
+						a {
+							color: rgb(97, 99, 112);
+							.underline {
+								background: rgb(97, 99, 112);
+							}
+						}
 					}
 
 				}
 			}
 
-			/* Portrait */
-			#haggis { grid-area: 1 / 1 / 2 / 4; }
-			#python { grid-area: 3 / 1 / 4 / 4; }
-			#menu {
-				grid-area: 2 / 1 / 3 / 4;
-				grid-template-columns: 10vh auto 15vh;
-				grid-template-rows: 1fr;
-
-				#translate svg {
-					transform: rotate(90deg);
-				}
-			}
-
-			/* Landscape */
-			/* #haggis { grid-area: 1 / 1 / 4 / 2; }
-			#python { grid-area: 1 / 3 / 4 / 4; }
-			#menu { grid-area: 1 / 2 / 4 / 3; }  */
-		
 			.ace-dracula .ace_ecomment {
 				color: #ff5555 !important;
 				font-weight: bold;
@@ -168,6 +208,46 @@
 			.ace-dracula .ace_qcomment {
 				color: #5588ff !important;
 				font-weight: bold;
+			}
+
+			@media only screen and (max-width: 58vh) {
+				#menu #selection .section {
+					height: 8vh;
+					width: 8vh;
+				}
+			}
+			@media only screen and (min-aspect-ratio: 1/.65) {
+				#haggis { grid-area: 1 / 1 / 4 / 2; }
+				#python { grid-area: 1 / 3 / 4 / 4; }
+				#menu {
+					grid-area: 1 / 2 / 4 / 3;
+					grid-template-rows: 15vh auto 15vh;
+					grid-template-columns: 100%;
+				
+				    #translate {
+						width: 75%;
+						height: 75%;
+
+						svg {
+                        	transform: rotate(0deg);
+						}
+                    }
+
+					#selection {
+						flex-direction: column;
+
+						#from-to-icon {
+							transform: rotate(90deg);
+						}
+					}
+
+					#credits {
+						h2 {
+							font-size: 1.8vh;
+							line-height: 1.9vh;
+						}
+					}
+				}
 			}
 		</style>
 	</head>
@@ -186,7 +266,7 @@ END</div>
 		</button>
 	</div>
 	<div id="menu">
-		<button id="translate" onclick="translate()">
+		<button id="translate" onclick="transpile()">
 			<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M20 12L16 8M20 12L16 16" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
 		</button>
 		<div id="selection">
@@ -205,8 +285,10 @@ END</div>
 			</div>
 		</div>
 		<div id="credits">
-			<h2>Made by <a href="https://qwkdev.github.io/" target="_blank">qwk</a></h2>
-			<p>Powered by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>, <a href="https://www.pythonanywhere.com/" target="_blank">PythonAnywhere</a>, & <a href="https://ace.c9.io/" target="_blank">Ace</a></p>
+			<!-- <h2>Made by <a href="https://qwkdev.github.io/" target="_blank">qwk</a></h2> -->
+			<!-- <p>Powered by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>, <a href="https://www.pythonanywhere.com/" target="_blank">PythonAnywhere</a>, & <a href="https://ace.c9.io/" target="_blank">Ace</a></p> -->
+			<h2>Made by <span><a style="font-weight: 500;" href="https://qwkdev.github.io" target="_blank">qwk<span class="underline" style="width: 110%; transform: translate(-95%, 0);"></span></a></span></h2>
+			<p>Powered by <span><a style="font-weight: 500;" href="https://pages.github.com/" target="_blank">GitHub Pages<span class="underline" style="width: 105%; transform: translate(-96.5%, 0);"></span></a></span>, <span><a style="font-weight: 500;" href="https://www.pythonanywhere.com/" target="_blank">PythonAnywhere<span class="underline" style="width: 103%; transform: translate(-98%, 0);"></span></a></span>, & <span><a style="font-weight: 500;" href="https://ace.c9.io/" target="_blank">Ace<span class="underline" style="width: 112.5%; transform: translate(-95%, 0);"></span></a></span></p>
 		</div>
 	</div>
 	<div id="python">
@@ -264,23 +346,23 @@ print("Hello, " + name + "!")</div>
 				}
 			}
 
-			function translate() {
+			function transpile() {
 				let code = haggis.getValue();
 
-				fetch('https://qwk.pythonanywhere.com/', {
+				fetch('https://qwk.pythonanywhere.com/reflex/test', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'
 					},
 					body: JSON.stringify({ code: code })
 				})
-				.then(response => response.json())  // Expecting a JSON response
+				.then(response => response.json())
 				.then(data => {
-					editor.setValue(data.code, -1);  // Update Ace editor with formatted code
+					python.setValue(data.code, -1);
 				})
 				.catch(error => {
 					console.error('Error:', error);
-					editor.setValue(`//! ERROR:\n//! ${error}`, -1);
+					python.setValue(`#! ERROR:\n#! ${error}`, -1);
 				});
 			}
 		</script>
