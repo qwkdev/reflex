@@ -3,8 +3,10 @@ define("ace/mode/haggis_highlight_rules", ["require", "exports", "module", "ace/
 	var oop = require("../lib/oop");
 	var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
 	var HaggisHighlightRules = function() {
-		var comingSoon = ("RECORD|CLASS|METHODS|OVERRIDE|CONSTRUCTOR")
-		var keywords = ("MOD|START|END|SET|TO|DECLARE|INITIALLY|APPEND|EXTEND|INCREMENT|INCREASE|DECREMENT|DECREASE|MULTIPLY|DIVIDE|BY|RECEIVE|INPUT|SEND|OUTPUT|IF|THEN|ELSE|WHILE|FOR|EACH|DO|SELECT|AS|INTEGER|REAL|BOOLEAN|CHARACTER|STRING|ARRAY|REPEAT|UNTIL|TIMES|FROM|PROCEDURE|FUNCTION|RETURNS|RETURN|OPEN|CLOSE|CREATE|IS'");
+		var reserved = ("reflex_reserved_file_name_\\d+|reflex_reserved_file_name_");
+
+		var comingSoon = ("RECORD|CLASS|METHODS|OVERRIDE|CONSTRUCTOR");
+		var keywords = ("MOD|START|END|SET|TO|DECLARE|INITIALLY|APPEND|EXTEND|INCREMENT|INCREASE|DECREMENT|DECREASE|MULTIPLY|DIVIDE|BY|RECEIVE|INPUT|SEND|OUTPUT|IF|THEN|ELSE|WHILE|FOR|EACH|DO|SELECT|AS|INTEGER|REAL|BOOLEAN|CHARACTER|STRING|ARRAY|REPEAT|UNTIL|TIMES|FROM|PROCEDURE|FUNCTION|RETURNS|RETURN|OPEN|CLOSE|CREATE|READ|WRITE|IS'");
 		var builtinConstants = ("true|false|KEYBOARD|DISPLAY");
 		var builtinFunctions = ("length|LENGTH|random|RANDOM|randint|RANDINT");
 		var keywordMapper = this.createKeywordMapper({
@@ -28,6 +30,9 @@ define("ace/mode/haggis_highlight_rules", ["require", "exports", "module", "ace/
 		var stringEscape = "\\\\(x[0-9A-Fa-f]{2}|[0-7]{3}|[\\\\abfnrtv'\"]|U[0-9A-Fa-f]{8}|u[0-9A-Fa-f]{4})";
 		this.$rules = {
 			"start": [{
+				token: "invalid.reserved",
+				regex: reserved
+			}, {
 				token: "ecomment",
 				regex: "#!.*$|//!.*$"
 			}, {
