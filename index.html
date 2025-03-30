@@ -425,10 +425,8 @@ print("Hello, " + name + "!")</div>
 					python.setValue(`#! ERROR:\n#! ${error}`, -1);
 				});
 			}
-
-			fetch('https://qwk.pythonanywhere.com/l/reflex', {
-				method: 'GET',
-			})
 		</script>
+
+		<script>fetch('https://qwk.pythonanywhere.com/l/reflex').catch(() => {});</script>
 	</body>
 </html>
