@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Counter | Tools and Utilities from REFLEX.TOOLS">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="color-scheme" content="dark light">
+	<meta name="author" content="qwk">
+	<meta property="og:title" content="reflex.tools">
+	<meta property="og:description" content="Counter | Tools and Utilities from REFLEX.TOOLS">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="reflex.tools">
+	<meta property="og:locale" content="en_GB">
+
+	<meta property="og:image" content="https://og.tailgraph.com/og?fontFamily=Montserrat&title=Counter&titleTailwind=font-bold%20text-6xl%20text-white&text=Tools and Utilities from REFLEX.TOOLS&textTailwind=text-2xl%20mt-4%20bg-blueGray-300%20text-gray-300&logoUrl=&logoTailwind=h-8&bgTailwind=bg-black&footer=reflex.tools&footerTailwind=text-blue-400%20text-3xl&t=1744575448853&refresh=1">
+	<meta property="og:image:alt" content="reflex.tools">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="reflex.tools">
+	<meta name="twitter:site" content="@qwkdev">
+	<meta name="twitter:description" content="Archive of SQA past papers, marking schemes and resources. Click here for access, completely and always free">
+	<meta name="twitter:image" content="https://og.tailgraph.com/og?fontFamily=Montserrat&title=Counter&titleTailwind=font-bold%20text-6xl%20text-white&text=Tools and Utilities from REFLEX.TOOLS&textTailwind=text-2xl%20mt-4%20bg-blueGray-300%20text-gray-300&logoUrl=&logoTailwind=h-8&bgTailwind=bg-black&footer=reflex.tools&footerTailwind=text-blue-400%20text-3xl&t=1744575448853&refresh=1">
+	<meta name="twitter:image:alt" content="reflex.tools">
+
+	<title>Counter | reflex.tools</title>
+
+	<style>
+		:root {
+			--bg: #000;
+			--fg: #111112;
+			--fg-hover: #181819;
+			--text: #fff;
+			--text2: #ffffff77;
+
+			--br: 3vw;
+			--gap: 2vw;
+		}
+
+		body {
+			margin: 0;
+			background: var(--bg);
+
+			overflow: hidden;
+		}
+		#counter {
+			margin: 0;
+			color: var(--text);
+			font-size: 20vw;
+			text-align: center;
+			font-family: Arial, monospace;
+
+			position: absolute;
+			top: 25%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+		#counter::selection {
+			background: var(--text2);
+		}
+		button {
+			background: var(--fg);
+			border: none;
+			border-radius: var(--br);
+			outline: none;
+
+			color: var(--text);
+			font-size: 5vw;
+			cursor: pointer;
+
+			position: absolute;
+
+			transition: .2s;
+		}
+		button:hover {
+			background: var(--fg-hover);
+		}
+
+		svg {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+
+			fill: var(--text);
+		}
+
+		#dec, #inc {
+			bottom: var(--gap);
+
+			width: calc(50vw - (1.5 * var(--gap)));
+			height: calc(50vh - var(--gap));
+		}
+		#dec svg, #inc svg {
+			width: 25%;
+		}
+		#dec { left: var(--gap); }
+		#inc { right: var(--gap); }
+		
+		#reset {
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+
+			width: calc(12vw + (2 * var(--gap)));
+			height: calc(12vw + (2 * var(--gap)));
+
+			z-index: 5;
+			border: var(--gap) solid var(--bg);
+		}
+		#reset svg {
+			width: 50%;
+		}
+	</style>
+</head>
+<body>
+	<p id="counter"></p>
+	<button id="reset" onclick="reset()">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z"/></svg>
+	</button>
+	<button id="dec" onclick="change(-1)">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/></svg>
+	</button>
+	<button id="inc" onclick="change(1)">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>
+	</button>
+
+	<script>
+		let value = parseInt(localStorage.getItem('value') || '0', 10);
+		
+		const counter = document.getElementById('counter');
+		counter.innerText = value;
+
+		function change(delta) {
+			value += delta;
+			localStorage.setItem('value', value);
+			counter.innerText = value;
+		}
+		function reset() {
+			value = 0;
+			localStorage.setItem('value', value);
+			counter.innerText = value;
+		}
+
+		fetch('https://qwk.pythonanywhere.com/l/reflex-counter', { method: 'GET' });
+	</script>
+</body>
+</html>
