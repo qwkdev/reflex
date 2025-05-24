@@ -27,6 +27,48 @@
 	<title>Counter | reflex.tools</title>
 
 	<style>
+		.underlined {
+			color: var(--ucolor, #fff);
+			font-weight: 500;
+			position: relative;
+			transition: .2s;
+			z-index: 2;
+			text-decoration: none;
+		}
+		.underline {
+			--widen: 0%;
+			--fix: 0%;
+			width: calc(100% + var(--widen));
+			transform: translateX(calc(-100% + var(--fix)));
+			height: 1px;
+			background: var(--ucolor, #fff);
+			position: absolute;
+			bottom: 0;
+			transition: .2s;
+			z-index: -1;
+		}
+		.underlined:hover {
+			color: var(--ubg, #000);
+		}
+		.underlined:hover .underline {
+			height: 100%;
+		}
+		.underlined::selection {
+			background: var(--ucolor2, #ffffff55);
+		}
+		#banner {
+			position: fixed;
+			top: 1vh;
+			left: 2vh;
+
+			font-family: monospace;
+			font-size: 2vh;
+
+			--ucolor: #777;
+			--ucolor2: #77777755;
+			--ubg: #000;
+		}
+
 		:root {
 			--bg: #000;
 			--fg: #111112;
@@ -132,6 +174,8 @@
 	</style>
 </head>
 <body>
+	<div id="banner"><span><a class="underlined" href="/" aria-label="Home Page">reflex.tools<span class="underline" style="--widen: 2%; --fix: 1%;"></span></a></span></div>
+
 	<p id="counter"></p>
 	<button id="reset" onclick="reset()">
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z"/></svg>

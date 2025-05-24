@@ -27,6 +27,48 @@
 	<title>Timer | reflex.tools</title>
 
 	<style>
+				.underlined {
+			color: var(--ucolor, #fff);
+			font-weight: 500;
+			position: relative;
+			transition: .2s;
+			z-index: 2;
+			text-decoration: none;
+		}
+		.underline {
+			--widen: 0%;
+			--fix: 0%;
+			width: calc(100% + var(--widen));
+			transform: translateX(calc(-100% + var(--fix)));
+			height: 1px;
+			background: var(--ucolor, #fff);
+			position: absolute;
+			bottom: 0;
+			transition: .2s;
+			z-index: -1;
+		}
+		.underlined:hover {
+			color: var(--ubg, #000);
+		}
+		.underlined:hover .underline {
+			height: 100%;
+		}
+		.underlined::selection {
+			background: var(--ucolor2, #ffffff55);
+		}
+		#banner {
+			position: fixed;
+			top: 1vh;
+			left: 2vh;
+
+			font-family: monospace;
+			font-size: 2vh;
+
+			--ucolor: #777;
+			--ucolor2: #77777755;
+			--ubg: #000;
+		}
+
 		body {
 			margin: 0;
 			background: #000;
@@ -52,6 +94,8 @@
 	</style>
 </head>
 <body>
+	<div id="banner"><span><a class="underlined" href="/" aria-label="Home Page">reflex.tools<span class="underline" style="--widen: 2%; --fix: 1%;"></span></a></span></div>
+
 	<p id="clock">TODO</p>
 
 	<script>
