@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Rave Light | Tools and Utilities from REFLEX.TOOLS">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="color-scheme" content="dark light">
+	<meta name="author" content="qwk">
+	<meta property="og:title" content="reflex.tools">
+	<meta property="og:description" content="Rave Light | Tools and Utilities from REFLEX.TOOLS">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="reflex.tools">
+	<meta property="og:locale" content="en_GB">
+
+	<meta property="og:image" content="https://og.tailgraph.com/og?fontFamily=Montserrat&title=Rave Light&titleTailwind=font-bold%20text-6xl%20text-white&text=Tools and Utilities from REFLEX.TOOLS&textTailwind=text-2xl%20mt-4%20bg-blueGray-300%20text-gray-300&logoUrl=&logoTailwind=h-8&bgTailwind=bg-black&footer=reflex.tools&footerTailwind=text-blue-400%20text-3xl&t=1744575448853&refresh=1">
+	<meta property="og:image:alt" content="reflex.tools">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="reflex.tools">
+	<meta name="twitter:site" content="@qwkdev">
+	<meta name="twitter:description" content="Rave Light | Tools and Utilities from REFLEX.TOOLS">
+	<meta name="twitter:image" content="https://og.tailgraph.com/og?fontFamily=Montserrat&title=Rave Light&titleTailwind=font-bold%20text-6xl%20text-white&text=Tools and Utilities from REFLEX.TOOLS&textTailwind=text-2xl%20mt-4%20bg-blueGray-300%20text-gray-300&logoUrl=&logoTailwind=h-8&bgTailwind=bg-black&footer=reflex.tools&footerTailwind=text-blue-400%20text-3xl&t=1744575448853&refresh=1">
+	<meta name="twitter:image:alt" content="reflex.tools">
+
+	<title>Rave Light | reflex.tools</title>
+
+	<style>
+		body {
+			margin: 0;
+			background: #fff;
+		}
+
+		@keyframes rave1 {
+			0%     { background: #f00; }
+			14.28% { background: #60f; }
+			28.56% { background: #ff0; }
+			42.84% { background: #00f; }
+			57.12% { background: #0ff; }
+			71.4%  { background: #0f0; }
+			85.68% { background: #fa0; }
+			100%   { background: #f0f; }
+		}
+		.anim1 { animation: rave1 .5s infinite alternate linear; }
+		@keyframes rave2 {
+			0%     { background: #f00; }
+			14.28% { background: #0ff; }
+			28.56% { background: #fa0; }
+			42.84% { background: #00f; }
+			57.12% { background: #ff0; }
+			71.4%  { background: #60f; }
+			85.68% { background: #0f0; }
+			100%   { background: #f0f; }
+		}
+		.anim2 { animation: rave2 .5s infinite alternate linear; }
+	</style>
+</head>
+<body class="anim1">
+	<script>
+		let toggle = true;
+		setInterval(() => {
+			document.body.classList.toggle('anim1', toggle);
+			document.body.classList.toggle('anim2', !toggle);
+			toggle = !toggle;
+		}, 2000);
+
+		fetch('https://qwk.pythonanywhere.com/l/reflex-rave', { method: 'GET' });
+		
+		document.addEventListener('dblclick', () => {
+			if (!document.fullscreenElement) { 
+				document.documentElement.requestFullscreen();
+			} else {
+				document.exitFullscreen();
+			}
+		});
+	</script>
+</body>
+</html>

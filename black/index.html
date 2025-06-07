@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Black Screen | Tools and Utilities from REFLEX.TOOLS">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="color-scheme" content="dark light">
+	<meta name="author" content="qwk">
+	<meta property="og:title" content="reflex.tools">
+	<meta property="og:description" content="Black Screen | Tools and Utilities from REFLEX.TOOLS">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="reflex.tools">
+	<meta property="og:locale" content="en_GB">
+
+	<meta property="og:image" content="https://og.tailgraph.com/og?fontFamily=Montserrat&title=Black Screen&titleTailwind=font-bold%20text-6xl%20text-white&text=Tools and Utilities from REFLEX.TOOLS&textTailwind=text-2xl%20mt-4%20bg-blueGray-300%20text-gray-300&logoUrl=&logoTailwind=h-8&bgTailwind=bg-black&footer=reflex.tools&footerTailwind=text-blue-400%20text-3xl&t=1744575448853&refresh=1">
+	<meta property="og:image:alt" content="reflex.tools">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="reflex.tools">
+	<meta name="twitter:site" content="@qwkdev">
+	<meta name="twitter:description" content="Black Screen | Tools and Utilities from REFLEX.TOOLS">
+	<meta name="twitter:image" content="https://og.tailgraph.com/og?fontFamily=Montserrat&title=Black Screen&titleTailwind=font-bold%20text-6xl%20text-white&text=Tools and Utilities from REFLEX.TOOLS&textTailwind=text-2xl%20mt-4%20bg-blueGray-300%20text-gray-300&logoUrl=&logoTailwind=h-8&bgTailwind=bg-black&footer=reflex.tools&footerTailwind=text-blue-400%20text-3xl&t=1744575448853&refresh=1">
+	<meta name="twitter:image:alt" content="reflex.tools">
+
+	<title>Black Screen | reflex.tools</title>
+
+	<style>
+		body {
+			margin: 0;
+			background: #000;
+		}
+	</style>
+</head>
+<body>
+	<script>
+		fetch('https://qwk.pythonanywhere.com/l/reflex-black', { method: 'GET' });
+		
+		document.addEventListener('dblclick', () => {
+			if (!document.fullscreenElement) { 
+				document.documentElement.requestFullscreen();
+			} else {
+				document.exitFullscreen();
+			}
+		});
+	</script>
+</body>
+</html>

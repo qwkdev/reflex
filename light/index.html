@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Screen Light | Tools and Utilities from REFLEX.TOOLS">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="color-scheme" content="dark light">
+	<meta name="author" content="qwk">
+	<meta property="og:title" content="reflex.tools">
+	<meta property="og:description" content="Screen Light | Tools and Utilities from REFLEX.TOOLS">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="reflex.tools">
+	<meta property="og:locale" content="en_GB">
+
+	<meta property="og:image" content="https://og.tailgraph.com/og?fontFamily=Montserrat&title=Screen Light&titleTailwind=font-bold%20text-6xl%20text-white&text=Tools and Utilities from REFLEX.TOOLS&textTailwind=text-2xl%20mt-4%20bg-blueGray-300%20text-gray-300&logoUrl=&logoTailwind=h-8&bgTailwind=bg-black&footer=reflex.tools&footerTailwind=text-blue-400%20text-3xl&t=1744575448853&refresh=1">
+	<meta property="og:image:alt" content="reflex.tools">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="reflex.tools">
+	<meta name="twitter:site" content="@qwkdev">
+	<meta name="twitter:description" content="Screen Light | Tools and Utilities from REFLEX.TOOLS">
+	<meta name="twitter:image" content="https://og.tailgraph.com/og?fontFamily=Montserrat&title=Screen Light&titleTailwind=font-bold%20text-6xl%20text-white&text=Tools and Utilities from REFLEX.TOOLS&textTailwind=text-2xl%20mt-4%20bg-blueGray-300%20text-gray-300&logoUrl=&logoTailwind=h-8&bgTailwind=bg-black&footer=reflex.tools&footerTailwind=text-blue-400%20text-3xl&t=1744575448853&refresh=1">
+	<meta name="twitter:image:alt" content="reflex.tools">
+
+	<title>Screen Light | reflex.tools</title>
+
+	<style>
+		body {
+			--bg: rgb(255, 255, 255);
+
+			margin: 0;
+			background: var(--bg);
+		}
+		#slider {
+			width: 90vw;
+			position: absolute;
+			bottom: 2vh;
+			left: 5vw;
+
+			background: transparent;
+		}
+		#slider::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			background-color: #000;
+			border: none;
+			border-radius: 50%;
+			width: 2vh;
+			height: 2vh;
+			margin-top: -.5vh;
+		}
+		#slider::-moz-range-thumb {
+			border: none;
+			border-radius: 50%;
+			background-color: #000;
+			width: 2vh;
+			height: 2vh;
+		}
+
+		#slider::-webkit-slider-runnable-track, #slider::-moz-range-track {
+			border-radius: 1.5vh;
+			height: 1.5vh;
+			border: 2px solid #000;
+
+			background: linear-gradient(to right, rgb(255, 185, 125), rgb(255, 255, 255), rgb(135, 200, 255)) !important;
+		}
+	</style>
+</head>
+<body>
+	<input id="slider" type="range" min="0" max="100" value="50" aria-label="Colour Slider">
+	
+	<script>
+		const warm = [255, 185, 125];
+		const neutral = [255, 255, 255];
+		const cool = [135, 200, 255];
+
+		function clr(value) {
+			if (value == 50) {
+				document.body.style.setProperty('--bg', `rgb(${neutral[0]}, ${neutral[1]}, ${neutral[2]})`);
+			} else if (value < 50) {
+				document.body.style.setProperty('--bg', `rgb(${warm[0] + ((neutral[0] - warm[0]) * (value / 50))}, ${warm[1] + ((neutral[1] - warm[1]) * (value / 50))}, ${warm[2] + ((neutral[2] - warm[2]) * (value / 50))})`);
+			} else {
+				document.body.style.setProperty('--bg', `rgb(${cool[0] + ((neutral[0] - cool[0]) * ((100-value) / 50))}, ${cool[1] + ((neutral[1] - cool[1]) * ((100-value) / 50))}, ${cool[2] + ((neutral[2] - cool[2]) * ((100-value) / 50))})`);
+			}
+		}
+
+		const slider = document.getElementById('slider');
+		clr(slider.value);
+		slider.addEventListener('input', () => clr(slider.value));
+
+		fetch('https://qwk.pythonanywhere.com/l/reflex-light', { method: 'GET' });
+		
+		document.addEventListener('dblclick', () => {
+			if (!document.fullscreenElement) { 
+				document.documentElement.requestFullscreen();
+			} else {
+				document.exitFullscreen();
+			}
+		});
+	</script>
+</body>
+</html>
