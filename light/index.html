@@ -89,8 +89,6 @@
 		const slider = document.getElementById('slider');
 		clr(slider.value);
 		slider.addEventListener('input', () => clr(slider.value));
-
-		fetch('https://qwk.pythonanywhere.com/l/reflex-light', { method: 'GET' });
 		
 		document.addEventListener('dblclick', () => {
 			if (!document.fullscreenElement) { 
