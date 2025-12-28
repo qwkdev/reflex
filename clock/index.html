@@ -107,8 +107,6 @@
 
 		updateClock();
 		setInterval(updateClock, 1000);
-
-		fetch('https://qwk.pythonanywhere.com/l/reflex-clock', { method: 'GET' });
 		
 		document.addEventListener('dblclick', () => {
 			if (!document.fullscreenElement) { 
