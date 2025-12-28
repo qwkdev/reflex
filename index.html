@@ -427,6 +427,42 @@ print("Hello, " + name + "!")</div>
 			}
 		</script>
 
-		<script>fetch('https://qwk.pythonanywhere.com/l/reflex').catch(() => {});</script>
+		<script>
+			const QT_SESSION = 'qt-session';
+			const SESSION_TIMEOUT = 30 * 60;
+			function setSession(session) {
+				document.cookie = `${QT_SESSION}=${session};Domain=reflex.tools;Path=/;Max-Age=${SESSION_TIMEOUT};SameSite=Lax`;
+			}
+			
+			function getSession() {
+				let session = document.cookie
+					.split('; ')
+					.find(c => c.startsWith(QT_SESSION+'='))
+					?.split('=')[1];
+				
+				if (!session) return null;
+			
+				setSession(session);
+				return session;
+			}
+			
+			fetch('https://qtrack.pythonanywhere.com/visit/reflex', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					's': getSession(),
+					'o': window.location.href || null,
+					'r': document.referrer || null
+				})
+			})
+				.then(response => response.json())
+				.then(data => {
+					if (data['session']) setSession(data['session']);
+				})
+				.catch(error => {
+					console.error('Error fetching visits:', error)
+				});
+
+		</script>
 	</body>
 </html>
