@@ -211,6 +211,11 @@
 				document.exitFullscreen();
 			}
 		});
+
+		document.addEventListener('keydown', e => {
+			if ([32, 38, 61].includes(e.keyCode)) change(1);
+			if ([8, 40, 173].includes(e.keyCode)) change(-1);
+		})
 	</script>
 </body>
 </html>
