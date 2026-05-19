@@ -213,6 +213,8 @@
 		});
 
 		document.addEventListener('keydown', e => {
+			e.preventDefault();
+			e.stopPropagation();
 			if ([32, 38, 61].includes(e.keyCode)) change(1);
 			if ([8, 40, 173].includes(e.keyCode)) change(-1);
 		})
